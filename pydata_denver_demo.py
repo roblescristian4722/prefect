@@ -15,7 +15,7 @@ def fetch_alert(obj, old_state, new_state):
 
 def type_alert(obj, old_state, new_state):
     if new_state.is_failed():
-        print("\nEl tipo de operación no está reconocido. Tipos de dato reconocidos:")
+        print("\nEl tipo de operación no está reconocido.\nTipos de operación reconocidos:")
         print("->usuarios\n->comentarios\n->posts")
 
 def print_alert(obj, old_state, new_state):
@@ -59,6 +59,8 @@ def data_type(op):
         return f"{url}/posts"
     elif (op == "custom"):
         return sys.argv[2]
+    else:
+        raise signals.FAIL
 
 @task(state_handlers=[print_alert])
 def print_data(data):
